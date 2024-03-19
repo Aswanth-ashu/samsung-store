@@ -1,0 +1,29 @@
+{%extends 'smain.html'%}
+{% load static %}
+{% block content %}
+<h1 class="bg-danger text-center" >Confirm delete </h1>
+
+<form action="" method="post">
+    {%csrf_token%}
+    <div class="card">
+      <div class="card-body">
+        
+           
+         <span>
+                    {{object.date}}
+              </span>
+        </div>
+  {% if object.image.url %}
+  <img class="thumbnail" src="{{object.image.url}}" height="500px" alt="Card image cap">
+  {% endif %}
+<div class="card-body">
+    <h4 class="card-title">NAME: {{object.name}}</h4>
+    
+    
+  </div>
+  </div>
+  
+  <p><input type="submit" value="confirm" class="btn btn-success "></p>
+</form>
+</div>
+{% endblock content %}

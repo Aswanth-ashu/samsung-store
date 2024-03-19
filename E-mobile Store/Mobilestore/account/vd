@@ -1,0 +1,66 @@
+{%extends 'home.html'%}
+{%block home%}
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: darkgray;">
+
+<form action="" method="post">
+{%csrf_token%}
+<center>
+<table class="text-light bg-dark" style="align-items: left;">
+
+ {{form.as_table}}
+
+</table>
+<br>
+<Button class="btn btn-success">Login</button>
+</form>
+</center>
+<br>
+<br>
+<center>
+    <!-- <--image slider start--> 
+        <div class="slider">
+            <div class="slides">
+                <!-- <--radio buttond start--> 
+                    <input type="radio" name="radio-btn" id="radio1">
+                    <input type="radio" name="radio-btn" id="radio2">
+                    <input type="radio" name="radio-btn" id="radio3">
+                    <input type="radio" name="radio-btn" id="radio4">
+
+                    <!-- <--radio buttons end--> 
+                        <!-- <--slide images start--> 
+                            <div class="slide first">
+                                <img src="https://images.unsplash.com/photo-1678911820864-e2c567c655d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60" alt="">
+                            </div>
+                            <div class="slide second">
+                                <img src="https://images.unsplash.com/photo-1570101945621-945409a6370f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjd8fHNtYXJ0cGhvbmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="">
+                            </div>
+                            <div class="slide third">
+                                <img src="https://images.unsplash.com/photo-1592890288564-76628a30a657?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c21hcnRwaG9uZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                            </div>
+                            <!-- <--slide images end--> 
+                                <!-- <--automatic navigation start--> 
+                                    <div class="navigation_auto">
+                                        <div class="auto-btn1"></div>
+                                        <div class="auto-btn2"></div>
+                                        <div class="auto-btn3"></div>
+
+                                    </div>
+                                    <!-- <--automatic navigation end--> 
+
+            </div>
+            <!-- <--manual navigation start--> 
+                <div class="navigation manual">
+                    <label for="radio1" class="manual-btn"></label>
+                    <label for="radio2" class="manual-btn"></label>
+                    <label for="radio3" class="manual-btn"></label>
+
+                </div>
+                <!-- <--manual navigation end--> 
+        </div>
+        <!-- <--imageslider end--> 
+</center>
+</body>
+{%endblock home%}

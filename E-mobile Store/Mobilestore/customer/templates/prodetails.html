@@ -1,0 +1,107 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+  {% if messages %}
+ {% for i in messages %}
+   {% if i.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+   <div class="alert alert-success alert-dismissible">
+     <button type="button" class="close" data-dismiss="alert"></button>
+     {{i}}
+   </div>
+   {% endif %}
+   {% if i.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+   <div class="alert alert-danger alert-dismissible">
+   <button type="button" class="close" data-dismiss="alert"></button>
+   {{i}}
+   </div>
+   {% endif %}
+ {% endfor %}
+ {% endif %} 
+ <section>
+
+ <div class="container mt-5 mb-5">
+  <div class="row d-flex justify-content-center">
+      <div class="col-md-10">
+          <div class="card">
+              <div class="row">
+                
+                  <div class="col-md-6">
+                      <div class="images p-3">
+                          <div class="text-center p-4"> <img id="main-image" src="{{products.imageURL}}" width="250" /> </div>
+                          
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="product p-4">
+                          <div class="d-flex justify-content-between align-items-center">
+                          </div>
+                          <div class="mt-4 mb-3"> 
+                             <div class="text-center"><h3>{{products.name}}</h3></div><br>
+                          <div class="mt-4"> 
+                            <span class="text-uppercase text-bold brand">Description: {{products.description}}</span><br>
+                          <div>
+                              <br><br>
+                              <div class="price d-flex flex-row align-items-center"> 
+                                <span class="act-price font-weight-bold">PRICE: {{products.price}}</span>
+                                </div>
+                              </div>
+                          </div>
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="container">
+            <div class="col mt-5 mb-5 row justify-content-center">
+              <div class="col-4 d-flex justify-content-center">
+                <a href="{%url 'addcart' products.id%}" class="btn btn-outline-warning">Add to cart</a>
+              </div>
+              <div>
+                <button class="btn btn-outline-success" type="button" data-toggle="collapse" data-target="#review-{{products.id}}" aria-expanded="false" aria-controls="review-{{product.id}}">
+                  Review
+                </button>
+              </div>
+              <div class="col-4 d-flex justify-content-center">
+                <a href="{% url 'c_out' %}" class="btn btn-outline-primary">Buy now</a>
+              </div>
+            </div>
+            <div class="collapse" id="review-{{products.id}}">
+              <div class="card card-body">
+                 
+                    {%for i in review%}
+                  
+                      {%if i.product.id == products.id%}
+                    <div class="card">
+                      <div class="card-body">
+                        <h3 class="card-title">{{i.user.first_name}}</h3>
+                        <p class="card-text">REVIEW:{{i.review}}</p>
+                        <p class="card-text">Rating: {{ i.rating }}</p>
+                      </div>
+                    </div>
+                    
+                    {%endif%}
+                  
+                  {%endfor%}
+                 
+                  
+                  
+                 <div class="text-center">
+                  <form method='post' action="{% url 'cadd_review' products.id%}">
+                    {% csrf_token %}
+                    <table class='table table-dark'>
+                    {{form.as_table}}
+                    </table>
+                    <button>submit</button>
+                  </form> 
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+      </div>
+  </div>
+</div>
+</section>
+{% endblock content %}
